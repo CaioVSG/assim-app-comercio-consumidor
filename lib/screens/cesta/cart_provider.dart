@@ -15,6 +15,11 @@ class CartProvider extends ChangeNotifier{
 
   void addCart(CartModel cartModel){
     bool isDuplicated = false;
+    if(listCart.isNotEmpty){
+      if(cartModel.storeId != listCart[0].storeId){
+        listCart.clear();
+      }
+    }
     for(int i = 0; i < listCart.length; i++){
       if(cartModel.productId == listCart[i].productId){
         listCart[i].amount += 1;
